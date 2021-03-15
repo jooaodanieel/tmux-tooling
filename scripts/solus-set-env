@@ -1,18 +1,20 @@
 #!/usr/bin/zsh
 
-if ! tmux has-session -t solus; then
-  tmux new -s solus -d
+SESSION_NAME=solus
 
-  tmux new-window -t solus:2
+if ! tmux has-session -t $SESSION_NAME; then
+  tmux new -s $SESSION_NAME -d
 
-  tmux send-keys -t solus:1 \
+  tmux new-window -t $SESSION_NAME:2
+
+  tmux send-keys -t $SESSION_NAME:1 \
     cd\ ~/workspace/solus/frontend Enter
-  tmux send-keys -t solus:1 \
+  tmux send-keys -t $SESSION_NAME:1 \
     nvim Enter
 
-  tmux send-keys -t solus:2 \
+  tmux send-keys -t $SESSION_NAME:2 \
     cd\ ~/workspace/solus/frontend Enter
-  tmux send-keys -t solus:2 \
+  tmux send-keys -t $SESSION_NAME:2 \
     make\ dev Enter
 fi
-tmux attach -t solus
+tmux attach -t $SESSION_NAME
