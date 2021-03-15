@@ -11,4 +11,6 @@ To run the setup, there' a bash script. Just run
 bash setup.sh
 ```
 
-This script will copy the config file to its place.
+This script will:
+  1. copy the config file `.tmux.conf` to `~/.tmux.conf`
+  2. copy the scripts in `./scripts` to `~/.local/bin` directory
