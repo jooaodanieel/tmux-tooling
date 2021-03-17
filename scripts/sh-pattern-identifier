@@ -1,0 +1,27 @@
+#!/usr/bin/zsh
+
+SECTION_NAME=sorting-hat
+APP_PATH=~/workspace/sortinghat/pattern_identifier
+
+if ! tmux has-session -t $SECTION_NAME; then
+  tmux new -s $SECTION_NAME -d
+
+  tmux split-window -t $SECTION_NAME:1 -h
+  tmux split-window -t $SECTION_NAME:1 -v
+
+  tmux send-keys -t $SECTION_NAME:1.0 \
+    cd\ $APP_PATH Enter
+  tmux send-keys -t $SECTION_NAME:1.0 \
+    nvim Enter
+
+  tmux send-keys -t $SECTION_NAME:1.1 \
+    cd\ $APP_PATH Enter
+  tmux send-keys -t $SECTION_NAME:1.1 \
+    npx\ json-server\ --watch\ db.json Enter
+
+  tmux send-keys -t $SECTION_NAME:1.2 \
+    cd\ $APP_PATH Enter
+  tmux send-keys -t $SECTION_NAME:1.2 \
+    yarn\ dev Enter
+fi
+tmux attach -t $SECTION_NAME
