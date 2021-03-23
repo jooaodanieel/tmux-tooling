@@ -5,16 +5,16 @@ SESSION_NAME=solus
 if ! tmux has-session -t $SESSION_NAME; then
   tmux new -s $SESSION_NAME -d
 
-  tmux new-window -t $SESSION_NAME:2
+  tmux split-window -t $SESSION_NAME:1 -h
 
-  tmux send-keys -t $SESSION_NAME:1 \
+  tmux send-keys -t $SESSION_NAME:1.0 \
     cd\ ~/workspace/solus/frontend Enter
-  tmux send-keys -t $SESSION_NAME:1 \
+  tmux send-keys -t $SESSION_NAME:1.0 \
     nvim Enter
 
-  tmux send-keys -t $SESSION_NAME:2 \
+  tmux send-keys -t $SESSION_NAME:1.1 \
     cd\ ~/workspace/solus/frontend Enter
-  tmux send-keys -t $SESSION_NAME:2 \
+  tmux send-keys -t $SESSION_NAME:1.1 \
     make\ dev Enter
 fi
 tmux attach -t $SESSION_NAME
